@@ -14,6 +14,7 @@ export async function getCryptoCurrencies() {
       }
     );
     const { data } = await res.json();
+
     let coins = data.map((coin) => {
       return {
         id: coin.id,

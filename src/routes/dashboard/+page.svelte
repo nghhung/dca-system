@@ -1,4 +1,6 @@
 <script lang="ts">
+  import UserButton from "clerk-sveltekit/client/UserButton.svelte";
+  import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
   import PieChart from "$lib/components/charts/PieChart.svelte";
   import Progress from "$lib/components/ui/progress/progress.svelte";
   import * as Table from "$lib/components/ui/table";
@@ -15,6 +17,19 @@
   $: maxCoinAmount = (data.price / data.maxAlphaCoin.price).toFixed(2);
 </script>
 
+<div class="flex justify-end">
+  <SignedIn>
+    <UserButton
+      afterSignOutUrl="/"
+      appearance={{
+        elements: {
+          userButtonPopoverFooter: "hidden",
+          userButtonPopoverActionButton__manageAccount: "hidden",
+        },
+      }}
+    />
+  </SignedIn>
+</div>
 <div>
   <h1 class="text-2xl mb-3 text-center text-black font-bold">
     Hệ thống kiếm lúa Crypto
