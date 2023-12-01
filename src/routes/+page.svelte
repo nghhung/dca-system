@@ -75,7 +75,7 @@
         <Tooltip.Root>
           <Tooltip.Trigger class="block">
             <p>
-              Supply In Profit: {data.supplyInProfitIndex.toFixed(2)}
+              Supply In Profit: {data.supplyInProfitIndex}
             </p></Tooltip.Trigger
           >
           <Tooltip.Content>
@@ -85,7 +85,7 @@
         <Tooltip.Root>
           <Tooltip.Trigger class="block"
             ><p>
-              Bitcoin NUPL: {data.nuplIndex.toFixed(2)}
+              Bitcoin NUPL: {data.nuplIndex}
             </p></Tooltip.Trigger
           >
           <Tooltip.Content>
