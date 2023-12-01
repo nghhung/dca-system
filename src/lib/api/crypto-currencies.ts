@@ -3,7 +3,7 @@ export async function getCryptoCurrencies() {
     const res = await fetch(
       `${
         import.meta.env.VITE_PRO_COIN_MARKET_CAP_API
-      }/v1/cryptocurrency/listings/latest`,
+      }/v1/cryptocurrency/listings/latest?limit=2360`,
       {
         method: "GET",
         headers: {
@@ -16,6 +16,7 @@ export async function getCryptoCurrencies() {
     const { data } = await res.json();
     let coins = data.map((coin) => {
       return {
+        id: coin.id,
         symbol: coin.symbol,
         price: coin.quote.USD.price,
         marketCap: coin.quote.USD.market_cap,
@@ -24,13 +25,8 @@ export async function getCryptoCurrencies() {
     const coinsObj = {};
 
     for (let i = 0; i < coins.length; i++) {
-      if (coins[i].symbol === "USDC") {
-        coinsObj["USDT"].marketCap += coins[i].marketCap;
-      } else {
-        coinsObj[coins[i].symbol] = coins[i];
-      }
+        coinsObj[coins[i].id] = coins[i];
     }
-
     return coinsObj;
   } catch (error) {
     console.log(error);

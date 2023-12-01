@@ -17,10 +17,13 @@
 
 <div>
   <h1 class="text-2xl mb-3 text-center text-black font-bold">
-    Hệ thống DCA Crypto
+    Hệ thống kiếm lúa Crypto
   </h1>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-10 w-full mt-10">
     <div class="col-span-2 border p-5 rounded-md shadow-xl">
+       <h2 class="text-2xl mb-3 text-center text-green font-bold">
+    Túi của Bi farmer
+  </h2>
       <Table.Root>
         <Table.Header>
           <Table.Row class="uppercase">
@@ -38,7 +41,7 @@
                 <img
                   class="w-6 h-6 mr-2 inline"
                   alt={coin.symbol}
-                  src={getCryptoLogo(coin.symbol)}
+                  src={getCryptoLogo(coin.id)}
                 />
                 {coin.symbol}
               </Table.Cell>
@@ -72,7 +75,7 @@
           </Table.Row>
           <Table.Row>
             <Table.Cell colspan={3} class="font-bold">Invested</Table.Cell>
-            <Table.Cell class="text-right">${INVESTED}</Table.Cell>
+            <Table.Cell class="text-right">{formatMoney(INVESTED)}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell colspan={3} class="font-bold">Profit</Table.Cell>
