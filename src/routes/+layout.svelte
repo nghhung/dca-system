@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>Hệ thống kiếm lúa Crypto</title>
+  <title>Hệ thống DCA Crypto</title>
 </svelte:head>
 
 <slot />

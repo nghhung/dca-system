@@ -1,3 +1,3 @@
-export const getCryptoLogo = (id: string) => {
-  return `https://s2.coinmarketcap.com/static/img/coins/64x64/${id}.png`;
+export const getCryptoLogo = (symbol: string) => {
+  return `https://assets.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`;
 };
