@@ -2,6 +2,7 @@ export const formatMoney = (number: number) => {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
+    minimumFractionDigits: 6
   }).format(number);
 };
 

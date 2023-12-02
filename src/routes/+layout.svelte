@@ -1,15 +1,11 @@
-<script lang="ts">
-  import { QueryClientProvider } from "@tanstack/svelte-query";
+<script>
   import "../app.css";
-  import type { LayoutData } from "./$types";
-
-  export let data: LayoutData;
 </script>
 
 <svelte:head>
-  <title>Hệ thống DCA Crypto</title>
+  <title>Hệ thống kiếm lúa Crypto</title>
 </svelte:head>
 
-<QueryClientProvider client={data.queryClient}>
+<div class="max-w-7xl py-5 w-full mx-auto px-3">
   <slot />
-</QueryClientProvider>
+</div>

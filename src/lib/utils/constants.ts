@@ -1,41 +1,80 @@
-export const INVESTED = 12000;
+export const INVESTED = 11496.82;
 
 export const CURRENCIES = [
   {
     symbol: "BTC",
-    amount: 0.10971092,
+    amount: 0,
+    id: "1"
   },
   {
     symbol: "ETH",
-    amount: 0.59430315,
+    id: "1027",
+    amount: 0.192677,
   },
   {
     symbol: "USDT",
-    amount: 392,
+    id: "825",
+    amount: 4515.0710,
   },
   {
-    symbol: "BNB",
-    amount: 0.8156,
+    symbol: "PEPE",
+    id: "24478",
+    amount: 1248406261.083,
   },
   {
-    symbol: "XRP",
-    amount: 496,
+    symbol: "WOO",
+    id: "7501",
+    amount: 4048.51743,
   },
   {
-    symbol: "SOL",
-    amount: 0,
+    symbol: "DOT",
+    id: "6636",
+    amount: 119.256969,
   },
   {
-    symbol: "ADA",
-    amount: 3046,
+    symbol: "LDO",
+    id: "8000",
+    amount: 161.29854,
   },
   {
-    symbol: "DOGE",
-    amount: 0,
+    symbol: "RVN",
+    id: "2577",
+    amount: 11471.517,
   },
   {
-    symbol: "TRX",
-    amount: 0,
+    symbol: "AXS",
+    id: "6783",
+    amount: 31.51845,
+  },
+  {
+    symbol: "PEOPLE",
+    id: "14806",
+    amount: 16027.60635,
+  },
+  {
+    symbol: "SUSHI",
+    id:"6758",
+    amount: 355.69,
+  },
+  {
+    symbol: "XEN",
+    id: "22118",
+    amount: 556853204.54,
+  },
+  {
+    symbol: "CTK",
+    id:"4807",
+    amount: 212.06,
+  },
+  {
+    symbol: "WSM",
+    id: "28179",
+    amount: 43504.06,
+  },
+  {
+    symbol: "VELO",
+    id: "20435",
+    amount: 6673.99,
   },
 ];
 

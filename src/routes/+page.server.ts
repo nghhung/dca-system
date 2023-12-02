@@ -18,9 +18,9 @@ export async function load(event) {
       getSupplyInProfitIndex(),
       getNuplIndex(),
     ]);
-
+    
   const coinsMapper = CURRENCIES.map((cur) => {
-    const coin = coinsObj?.[cur.symbol];
+    const coin = coinsObj?.[cur.id];
     const value = cur.amount * coin.price;
     return {
       ...coin,
@@ -28,7 +28,7 @@ export async function load(event) {
       value: value,
     };
   });
-
+// console.log('coinsMapper coinsMapper' , coinsMapper)
   const total = sumBy(coinsMapper, "value");
   const totalMarket = sumBy(coinsMapper, "marketCap");
 
