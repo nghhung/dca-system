@@ -14,7 +14,7 @@ export const CURRENCIES = [
   {
     symbol: "USDT",
     id: "825",
-    amount: 4515.0710,
+    amount: 4720.4410,
   },
   {
     symbol: "PEPE",
@@ -44,7 +44,7 @@ export const CURRENCIES = [
   {
     symbol: "AXS",
     id: "6783",
-    amount: 31.51845,
+    amount: 0,
   },
   {
     symbol: "PEOPLE",
