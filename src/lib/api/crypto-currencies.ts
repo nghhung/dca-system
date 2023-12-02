@@ -3,7 +3,7 @@ export async function getCryptoCurrencies() {
     const res = await fetch(
       `${
         import.meta.env.VITE_PRO_COIN_MARKET_CAP_API
-      }/v1/cryptocurrency/listings/latest?limit=2360`,
+      }/v1/cryptocurrency/listings/latest?limit=2560`,
       {
         method: "GET",
         headers: {
