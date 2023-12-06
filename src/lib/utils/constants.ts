@@ -1,1 +1,1 @@
-export const INVESTED = 12000;
+export const INVESTED = 11496.82;

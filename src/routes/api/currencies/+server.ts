@@ -45,6 +45,7 @@ export async function POST(event) {
 
     const body = await event.request.json();
     let slug = body.coinGeckoId;
+    console.log('slug here           ', slug)
 
     const currencyByCoinGeckoId = await getCMCCurrencyDetail(slug);
 
