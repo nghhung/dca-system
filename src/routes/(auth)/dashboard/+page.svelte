@@ -67,7 +67,7 @@
     <p class="mt-4">
       You don't have any currency yet. Please click <a
         class={buttonVariants({ variant: "default" })}
-        href="/dashboard/portfolio-setting">Setup</a
+        href="setting">Setup</a
       >
       to add some currencies.
     </p>
