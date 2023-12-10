@@ -1,4 +1,4 @@
-import { getCMCCurrencyDetail } from "$lib/api/cmc-currency-detail";
+import { getCMCCurrencyDetail } from "$lib/externals/cmc-currency-detail";
 import prisma from "$lib/db/prisma";
 import { json } from "@sveltejs/kit";
 
@@ -32,6 +32,7 @@ export async function GET(event) {
   );
 
   const formattedCurrencies = cmcCurrencies.map((currency) => ({
+    id: currency.id,
     name: currency.name,
     symbol: currency.symbol,
     slug: currency.coinGeckoId,

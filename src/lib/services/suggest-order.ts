@@ -1,41 +1,78 @@
+import { formatNumber } from "$lib/utils/number";
 import type { ExtendCurrency } from "$lib/utils/type";
 import { last, sortBy } from "lodash-es";
 
-interface SuggestOrder {
+interface Index {
   fearAndGreed: number;
   supplyInProfit: number;
   nupl: number;
-  currencies: ExtendCurrency[];
 }
 
-export const suggestOrder = ({
-  currencies,
-  supplyInProfit,
-  nupl,
-  fearAndGreed,
-}: SuggestOrder) => {
-  if (!currencies.length) return "";
-
+export const calPrice = (
+  currencies: ExtendCurrency[],
+  { fearAndGreed, supplyInProfit, nupl }: Index
+) => {
   let price = 30;
-  if (fearAndGreed > 80 || supplyInProfit > 95 || nupl > 0.5 || nupl < 0) {
+
+  const usdt = currencies.find((currency) => currency.symbol === "USDT");
+
+  const highRisk =
+    fearAndGreed > 80 || supplyInProfit > 95 || nupl > 0.5 || nupl < 0;
+
+  if (highRisk && usdt && usdt.percent <= 30) {
     price = 100;
   }
-  const usdt = currencies.find((item) => item.symbol === "USDT");
+  return price;
+};
 
-  const shouldSell = fearAndGreed > 70 || supplyInProfit > 80 || nupl > 0.5;
+const calShouldSell = ({ supplyInProfit, nupl, fearAndGreed }: Index) => {
+  let shouldSell = false;
 
-  const sortedCurrenciesByAlpha = sortBy(currencies, "alpha");
-
-  if (shouldSell) {
-    if (
-      usdt &&
-      usdt.percent > 30 &&
-      sortedCurrenciesByAlpha[0]?.symbol === "USDT"
-    ) {
-      return `Nên mua $${price} ${last(sortedCurrenciesByAlpha)?.symbol}`;
-    }
-    return `Nên bán $${price} ${sortedCurrenciesByAlpha[1]?.symbol}`;
+  if (fearAndGreed > 70 || supplyInProfit > 80 || nupl > 0.5) {
+    shouldSell = true;
   }
 
-  return `Nên mua $30 ${last(sortedCurrenciesByAlpha)?.symbol}`;
+  return shouldSell;
+};
+
+export const getMessage = (
+  shouldSell: boolean,
+  price: number,
+  currency: ExtendCurrency
+) => {
+  return `${shouldSell ? "Should sell" : "Should buy"} $${price} ${
+    currency.symbol
+  } (${formatNumber(price / currency.price, 3)})`;
+};
+
+export const suggestOrder = (
+  currencies: ExtendCurrency[],
+  { supplyInProfit, nupl, fearAndGreed }: Index
+) => {
+  if (!currencies.length) return "";
+
+  const price = calPrice(currencies, {
+    fearAndGreed,
+    supplyInProfit,
+    nupl,
+  });
+
+  const sortedCurrenciesWithoutUSDTByAlpha = sortBy(
+    currencies.filter((currency) => currency.symbol !== "USDT"),
+    "alpha"
+  );
+
+  const shouldSell = calShouldSell({
+    supplyInProfit,
+    nupl,
+    fearAndGreed,
+  });
+
+  if (shouldSell) {
+    const coinShouldSell = sortedCurrenciesWithoutUSDTByAlpha[0]!;
+    return getMessage(shouldSell, price, coinShouldSell);
+  }
+  const coinShouldBuy = last(sortedCurrenciesWithoutUSDTByAlpha)!;
+
+  return getMessage(shouldSell, price, coinShouldBuy);
 };

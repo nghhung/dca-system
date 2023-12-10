@@ -34,3 +34,22 @@ model Currency {
   @@unique([slug, symbol, userId], name: "slug_symbol_user_id")
   @@map("currencies")
 }
+
+enum TransactionType {
+  SELL 
+  BUY
+}
+
+model Transaction {
+  id              String @id @default(cuid())
+  userId          String
+  currencyId      String
+  type            TransactionType 
+  amount          String
+  price           String
+  timestamp       DateTime
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("transactions")
+}

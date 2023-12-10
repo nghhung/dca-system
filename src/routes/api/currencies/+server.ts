@@ -1,38 +1,32 @@
-import { getCMCCurrencyDetail } from "$lib/api/cmc-currency-detail";
 import prisma from "$lib/db/prisma";
+import { getCMCCurrencyDetail } from "$lib/externals/cmc-currency-detail";
 import { changeImageType } from "$lib/utils/image";
 import { Prisma } from "@prisma/client";
-import { error, json } from "@sveltejs/kit";
+import { error, json, type RequestEvent } from "@sveltejs/kit";
 
-export async function GET(event) {
+export const GET = async (event: RequestEvent) => {
   const currencies = await prisma.currency.findMany({
     where: {
       userId: event.locals.session.userId,
     },
   });
-
   return json({
     status: "success",
     currencies: currencies,
   });
-}
+};
 
 export async function POST(event) {
   try {
     const body = await event.request.json();
-    let slug = body.slug;
 
-    const currencyByCoinGeckoId = await getCMCCurrencyDetail(slug);
+    const res = await Promise.any([
+      getCMCCurrencyDetail(body.symbol),
+      getCMCCurrencyDetail(body.name),
+      getCMCCurrencyDetail(body.slug),
+    ]);
 
-    if (!currencyByCoinGeckoId.data) {
-      slug = body.symbol;
-      const currencyBySymbol = await getCMCCurrencyDetail(slug);
-      if (!currencyBySymbol.data) {
-        throw error(409, {
-          message: "Currency not found on CoinMarketCap!",
-        });
-      }
-    }
+    let slug = res.data.slug;
 
     const currency = await prisma.currency.create({
       data: {
@@ -57,8 +51,12 @@ export async function POST(event) {
       throw error(409, {
         message: "Currency already exist!",
       });
-    } else {
-      throw err;
     }
+    if (err instanceof AggregateError) {
+      throw error(400, {
+        message: err.errors[0].message,
+      });
+    }
+    throw err;
   }
 }
