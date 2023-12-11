@@ -1,7 +1,7 @@
 export const getCMCCurrencyDetail = async (slug: string) => {
-  if (slug === 'WOO') {
-    slug = 'wootrade'
-  }
+  // if (slug === 'WOO') {
+  //   slug = 'wootrade'
+  // }
   const res = await fetch(
     `https://api.coinmarketcap.com/data-api/v3/cryptocurrency/detail?slug=${slug}`
   );
