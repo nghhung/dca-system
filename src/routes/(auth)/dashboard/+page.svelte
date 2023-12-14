@@ -108,7 +108,7 @@
   ];
 </script>
 
-<Page title="Dashboard">
+<Page title="Túi của Bi farmer">
   <div class="space-y-4 w-full mt-4">
     <div class="grid grid-cols-3 gap-4 w-full">
       <div

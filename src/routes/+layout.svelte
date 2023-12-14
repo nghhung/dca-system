@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-  <title>CoinInvest</title>
+  <title>Hệ Thống Kiếm Lúa</title>
 </svelte:head>
 
 <Toaster richColors position="top-right" duration={3000} closeButton />

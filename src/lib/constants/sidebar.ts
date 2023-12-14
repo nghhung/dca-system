@@ -3,7 +3,7 @@ import { BarChart, Gauge, LayoutGrid, Settings } from "lucide-svelte";
 
 export const SIDEBARS = [
   {
-    name: "Dashboard",
+    name: "Túi của Bi farmer",
     path: "/dashboard",
     icon: LayoutGrid,
   },
